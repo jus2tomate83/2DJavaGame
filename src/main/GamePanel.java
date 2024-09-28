@@ -15,6 +15,7 @@ public class GamePanel extends JPanel {
     final int screenWidth = tilesSize * maxScreenCol; //768 pixels
     final int screenHeight= tilesSize * maxScreenRow; //576 pixels
 
+    Thread gameThread;
 
     public GamePanel(){
 
