@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    public CollisionCheker cCheker =new CollisionCheker(this);
     public Player player = new Player(this,keyH);
 
     //WORLD SETTINGS
@@ -91,8 +92,23 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D) g;
 
+
+        //debug
+        long drawStart = 0;
+        if(keyH.debugMode == true){
+            drawStart = System.nanoTime();
+        }
+
+
         tileM.draw(g2);
         player.draw(g2);
+
+        //DEBUG
+        if(keyH.debugMode == true){
+            long drawEnd =System.nanoTime();
+            long passed = drawEnd - drawStart;
+            System.out.println("Draw Time :" + passed);
+        }
 
         g2.dispose();
     }
